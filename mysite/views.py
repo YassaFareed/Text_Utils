@@ -7,18 +7,40 @@ def index(request):
 
     # return HttpResponse("Home")
 
-def removepunc(request):
-    return HttpResponse("remove punc")
 
-def capfirst(request):
-    return HttpResponse("capitalize first")
+def analyze(request):
+    #Get the text
+    djtext = request.GET.get('text', 'default') # get text else default 
 
-def newlineremove(request):
-    return HttpResponse("capitalize first")
+    # Check checkbox values
+    removepunc = request.GET.get('removepunc', 'off')
+    fullcaps = request.GET.get('fullcaps', 'off')
+    newlineremover = request.GET.get('newlineremover', 'off')
+    extraspaceremover = request.GET.get('extraspaceremover', 'off')
+
+    #Check which checkbox is on
+    if removepunc == "on":
+        punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        analyzed = ""
+        for char in djtext:
+            if char not in punctuations:
+                analyzed = analyzed + char
+        params = {'purpose':'Removed Punctuations', 'analyzed_text': analyzed}
+        return render(request, 'analyze.html', params)
+
+    else:
+        return HttpResponse("Error")
 
 
-def spaceremove(request):
-    return HttpResponse("space remover")
+# def capfirst(request):
+#     return HttpResponse("capitalize first")
 
-def charcount(request):
-    return HttpResponse("charcount ")
+# def newlineremove(request):
+#     return HttpResponse("capitalize first")
+
+
+# def spaceremove(request):
+#     return HttpResponse("space remover")
+
+# def charcount(request):
+#     return HttpResponse("charcount ")
