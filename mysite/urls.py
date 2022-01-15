@@ -28,3 +28,4 @@ urlpatterns = [
     path('charcount', views.charcount, name='charcount'),
 
 ]
+

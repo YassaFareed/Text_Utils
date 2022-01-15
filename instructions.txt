@@ -1,0 +1,10 @@
+
+install virtualenv
+virutalenv myenv # to create venv
+
+python -m pip install django
+
+use powershell to allow executing venv by opening powershell admin and writing commnad set-executionpolicy remotesigned
+.\myenv\Scripts\activate will work now
+
+django-admin startproject newproject # create project with name newproject
